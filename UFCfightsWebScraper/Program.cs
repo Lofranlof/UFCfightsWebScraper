@@ -22,10 +22,18 @@ namespace WebScraper
             var tournamentName = tournamentNameElement.InnerText.Trim();
             Console.WriteLine("Tournament: " + tournamentName);
 
-            var mainEventElement = htmlDocument.DocumentNode.SelectSingleNode("//div[@class='c-hero--full__headline is-large-text']");
-            var mainEvent = System.Web.HttpUtility.HtmlDecode(mainEventElement.InnerText.Trim());
-            Console.WriteLine("Main Event: " + mainEvent);
-            
+            var mainEventElement = htmlDocument.DocumentNode.SelectSingleNode("//div[@class='c-hero--full__headline is-large-text']"); //Will be null during UFC Fight Nights
+            if (mainEventElement != null )
+            {
+                var mainEvent = System.Web.HttpUtility.HtmlDecode(mainEventElement.InnerText.Trim());
+                Console.WriteLine("Main Event: " + mainEvent);
+            }
+            else
+            {
+                mainEventElement = htmlDocument.DocumentNode.SelectSingleNode("//div[@class='c-hero--full__headline is-medium-text']");
+                var mainEvent = System.Web.HttpUtility.HtmlDecode(mainEventElement.InnerText.Trim());
+                Console.WriteLine("Main Event: " + mainEvent);
+            }
         }
     }
 }
