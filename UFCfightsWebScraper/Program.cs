@@ -34,6 +34,9 @@ namespace WebScraper
                 var mainEvent = System.Web.HttpUtility.HtmlDecode(mainEventElement.InnerText.Trim());
                 Console.WriteLine("Main Event: " + mainEvent);
             }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadLine();
         }
+
     }
 }
